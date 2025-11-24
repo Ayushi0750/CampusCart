@@ -1,0 +1,60 @@
+<% layout("/layouts/boilerplate") %>
+
+  
+
+<h1>Create New Event</h1>
+<form action="/events2" method="POST" novalidate class="needs-validation">
+  <label class="form-label">Event Title</label>
+  <input type="text" name="title" placeholder="e.g. Jazz Night" class="form-control" required />
+  <br>
+
+  <label class="form-label">Description</label>
+  <textarea name="description" placeholder="Describe the event..."  class="form-control" ></textarea>
+  <br>
+
+  <label class="form-label">Date</label>
+  <input type="date" name="date"  class="form-control"required />
+  <br>
+
+  <label class="form-label">Time</label>
+  <input type="text" name="time" placeholder="e.g. 7:00 PM"  class="form-control"required />
+  <br>
+
+  <label class="form-label">Location</label>
+  <input type="text" name="location" placeholder="Venue or address"  class="form-control"required />
+  <br>
+
+  <label class="form-label">Ticket Price</label>
+  <input type="number" name="price" placeholder="e.g. 500" class="form-control" required />
+  <br>
+
+  <label class="form-label">Category</label>
+  <select name="category" class="form-control" required>
+    <option disabled selected>Select category </option>
+    <option>Music</option>
+    <option>Business</option>
+    <option>Comedy</option>
+    <option>Technology</option>
+    <option>Food</option>
+    <option>Wellness</option>
+    <option>Film</option>
+    <option>Sports</option>
+    <option>Art</option>
+    <option>Festival</option>
+  </select>
+  <br>
+
+  <label class="form-label">Available Tickets</label>
+  <input type="number" name="availableTickets" placeholder="e.g. 100" class="form-control" />
+  <br>
+
+  <label class="form-label">Event Banner URL</label>
+  <input type="text" name="imageUrl" placeholder="Paste image URL"  class="form-control" />
+  <br>
+
+  <label class="form-label">Organizer ID</label>
+  <input type="text" name="ownerId" placeholder="Your user ID"  class="form-control" required />
+  <br>
+
+  <button type="submit" class="btn">Create Event</button>
+</form>

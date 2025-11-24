@@ -1,0 +1,87 @@
+
+<% layout("/layouts/boilerplate") %>
+
+<h1><%= listing.title %></h1>
+
+<img src="<%= listing.imageUrl %>" alt="Event Banner" width="600" style="margin-bottom: 20px;" />
+
+<p><strong>Description:</strong> <%= listing.description %></p>
+<p><strong>Date:</strong> <%= listing.date.toDateString() %></p>
+<p><strong>Time:</strong> <%= listing.time %></p>
+<p><strong>Location:</strong> <%= listing.location %></p>
+<p><strong>Ticket Price:</strong> ₹<%= listing.price %></p>
+<p><strong>Category:</strong> <%= listing.category %></p>
+<p><strong>Available Tickets:</strong> <%= listing.availableTickets %></p>
+
+
+<p><strong>Organizer ID:</strong> <%= listing.owner ? listing.owner._id : "Unknown" %></p>
+<p><strong>Organizer Email:</strong> <%= listing.owner ? listing.owner.email : "" %></p>
+
+<hr><hr>
+
+<% if (currUser && listing.owner && listing.owner._id.toString() === currUser._id.toString()) { %>
+  <a href="/events2/<%= listing._id %>/edit" class="btn btn-warning">Edit Event</a>
+  <form action="/events2/<%= listing._id %>?_method=DELETE" method="POST" style="display:inline;">
+    <button type="submit" onclick="return confirm('Are you sure you want to delete this event?')" class="btn btn-danger">
+      Delete Event
+    </button>
+  </form>
+<% } %>
+
+<hr>
+
+<% if (currUser) { %>
+  <div>
+    <h4>Leave a review</h4>
+    <form action="/events2/<%= listing._id %>/reviews2" method="POST" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="comment" class="form-label">Your Comment</label>
+        <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+        <div class="invalid-feedback">Please enter your comment.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="rating" class="form-label">Rating</label>
+        <select class="form-select" id="rating" name="rating" required>
+          <option value="" disabled selected>Select a rating</option>
+          <option value="1">1 - Poor</option>
+          <option value="2">2 - Fair</option>
+          <option value="3">3 - Good</option>
+          <option value="4">4 - Very Good</option>
+          <option value="5">5 - Excellent</option>
+        </select>
+        <div class="invalid-feedback">Please select a rating between 1 and 5.</div>
+      </div>
+
+      <button type="submit" class="btn">Submit Review</button>
+    </form>
+  </div>
+<% } else { %>
+  <p class="text-muted">
+    Please <a href="/events2/login">login</a> to leave a review.
+  </p>
+<% } %>
+
+<hr>
+<h4>All Reviews</h4>
+
+<% if (!listing.reviews2 || listing.reviews2.length === 0) { %>
+  <p>No reviews yet.</p>
+<% } else { %>
+  <ul class="list-group mb-4">
+    <% listing.reviews2.forEach(review => { %>
+      <li class="list-group-item">
+        <strong>Rating:</strong> <%= review.rating %> <br>
+        <strong>Comment:</strong> <%= review.comment %><br>
+        <small><%= new Date(review.createdAt).toDateString() %></small><br>
+        <small>By: <%= review.author ? review.author.username : "Anonymous" %></small>
+
+        <% if (currUser && review.author && review.author._id.toString() === currUser._id.toString()) { %>
+          <form action="/events2/<%= listing._id %>/reviews2/<%= review._id %>?_method=DELETE" method="POST" class="mt-2">
+            <button class="btn">Delete</button>
+          </form>
+        <% } %>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>

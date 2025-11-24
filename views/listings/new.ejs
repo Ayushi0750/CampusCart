@@ -1,0 +1,114 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Add a New Product</h1>
+  <form action="/listings" method="POST" novalidate class="needs-validation" >
+
+    <!-- Title -->
+    <div class="mb-3">
+      <label for="title" class="form-label">Title <span class="text-danger">*</span></label>
+      <input type="text" class="form-control" id="title" name="title" required>
+      <div class="invalid-feedback">Title is required.</div>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" name="description" rows="3 " required></textarea>
+    </div>
+
+
+    <!-- Image url -->
+    <div class="mb-3">
+      <label for="image_url" class="form-label"> Upload Image </label>
+      <input type="url" class="form-control" id="image_url" name="image[url]" />
+    </div>
+    
+    
+    <!-- Price -->
+    <div class="mb-3">
+      <label for="price" class="form-label">Price (₹) <span class="text-danger">*</span></label>
+      <input type="number" class="form-control" id="price" name="price" required min="0">
+      <div class="invalid-feedback">Price is required and must be a positive number.</div>
+    </div>
+
+    <!-- Location -->
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input type="text" class="form-control" id="location" name="location">
+    </div>
+
+    <!-- Country -->
+    <div class="mb-3">
+      <label for="country" class="form-label">Country</label>
+      <input type="text" class="form-control" id="country" name="country">
+    </div>
+
+    <!-- Seller Info -->
+    <fieldset class="border p-3 mb-4">
+      <legend class="float-none w-auto px-2">Seller Info</legend>
+
+      <div class="mb-3">
+        <label for="seller_name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="seller_name" name="seller[name]">
+      </div>
+
+      <div class="mb-3">
+        <label for="seller_college" class="form-label">College</label>
+        <input type="text" class="form-control" id="seller_college" name="seller[college]">
+      </div>
+
+      <div class="mb-3">
+        <label for="seller_category" class="form-label">Category</label>
+        <select class="form-select" id="seller_category" name="seller[category]">
+          <option value="">Select</option>
+          <option value="hostler">Hostler</option>
+          <option value="day scholar">Day Scholar</option>
+          <option value="faculty">Faculty</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="seller_contact_phone" class="form-label">Phone</label>
+        <input type="tel" class="form-control" id="seller_contact_phone" name="seller[contact][phone]">
+      </div>
+
+      <div class="mb-3">
+        <label for="seller_contact_email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="seller_contact_email" name="seller[contact][email]">
+      </div>
+    </fieldset>
+
+    <!-- Barter Option -->
+    <div class="form-check mb-3">
+      <input class="form-control" type="checkbox" id="isBarterAvailable" name="isBarterAvailable" value="true">
+      <label class="form-label" for="isBarterAvailable">Barter Available</label>
+    </div>
+
+    <!-- Barter Conditions -->
+    <div class="mb-3">
+      <label for="barterConditions" class="form-label">Barter Conditions</label>
+      <textarea class="form-control" id="barterConditions" name="barterConditions" rows="2"></textarea>
+    </div>
+
+    <!-- Submit -->
+    <button type="submit" class="btn">Create Listing</button>
+  </form>
+</div>
+
+<script>
+  // Bootstrap validation
+  (() => {
+    'use strict';
+    const forms = document.querySelectorAll('form');
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+</script>

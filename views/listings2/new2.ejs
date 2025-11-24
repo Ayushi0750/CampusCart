@@ -1,0 +1,67 @@
+<% layout("/layouts/boilerplate") %>
+
+
+
+<h1>Create a New Event</h1>
+
+<form action="/events2" method="POST"  novalidate class="needs-validation">
+
+  <!-- Event Title -->
+  <label for="title"  class="form-label">Event Title</label>
+  
+  <input type="text" name="title" id="title" placeholder="e.g. Jazz Night" class="form-control" required />
+  <br>
+
+  <!-- Description-->
+  <label for="description" class="form-label">Description</label>
+  <textarea name="description" id="description" placeholder="Describe the event..."  class="form-control" required></textarea>
+  <br>
+
+  <!-- Date -->
+  <label for="date" class="form-label">Date</label>
+  <input type="date" name="date" id="date"  class="form-control" required />
+  <br>
+
+  <!-- Time -->
+  <label for="time" class="form-label">Time</label>
+  <input type="text" name="time" id="time" placeholder="e.g. 7:00 PM"  class="form-control" required />
+  <br>
+
+  <!-- Location -->
+  <label for="location" class="form-label">Location</label>
+  <input type="text" name="location" id="location" placeholder="Venue or address"  class="form-control" required />
+  <br>
+
+  <!-- Ticket Price -->
+  <label for="price" class="form-label">Ticket Price</label>
+  <input type="number" name="price" id="price" placeholder="e.g. 500" class="form-control"  required />
+  <br>
+
+  <!-- Category -->
+  <label for="category" class="form-label">Category</label>
+  <select name="category" id="category" class="form-control"  required>
+    <option disabled selected>Select category</option>
+    <% ["Music","Business","Comedy","Technology","Food","Wellness","Film","Sports","Art","Festival"].forEach(cat => { %>
+      <option value="<%= cat %>"><%= cat %></option>
+    <% }) %>
+  </select>
+  <br>
+
+  <!-- Available Tickets -->
+  <label for="availableTickets" class="form-label">Available Tickets</label>
+  <input type="number" name="availableTickets" id="availableTickets" placeholder="e.g. 100"  class="form-control"  />
+  <br>
+
+  <!-- Image URL -->
+  <label for="imageUrl" class="form-label">Event Banner URL</label>
+  <input type="text" name="imageUrl" id="imageUrl" placeholder="Paste image URL" class="form-control"   />
+  <br>
+
+  
+  <!-- Organizer ID -->
+  <label for="ownerId" class="form-label">Organizer ID</label>
+  <input type="text" name="ownerId" id="ownerId" placeholder="Your user ID"  class="form-control" required />
+  <br>
+
+  <button type="submit" class="btn">Create Event</button>
+</form>

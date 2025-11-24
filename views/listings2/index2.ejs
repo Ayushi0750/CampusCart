@@ -1,0 +1,49 @@
+
+
+
+
+
+<% layout("/layouts/boilerplate") %>
+
+<% if (error && error.length > 0) { %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= error %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<% if (success && success.length > 0) { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= success %>
+    <button type="button" class="btn" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
+  <% listings.forEach(listing => {
+       if (!listing.isEvent) { %>
+    <div class="col">
+      <div class="card h-100">
+        <% if (listing.imageUrl) { %>
+
+          <img src="<%= listing.imageUrl %>"  onerror="this.src='/images/default.jpg'"class="card-img-top" alt="listing_image" style="height: 20rem; object-fit: cover;">
+        <% } else { %>
+          <img src="/images/default.jpg" class="card-img-top" alt="default_image" style="height: 20rem; object-fit: cover;">
+        <% } %>
+        <div class="card-body">
+          <p class="card-text mb-2">
+            <strong><%= listing.title %></strong><br>
+            ₹<%= listing.price %>
+          </p>
+          
+          <a href="/events2/<%= listing._id %>" class="btn">View</a>
+
+          <% if (listing.isBarterAvailable) { %>
+            <a href="/listings/<%= listing._id %>/barter" class="btn">Barter</a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  <% } }) %>
+</div>

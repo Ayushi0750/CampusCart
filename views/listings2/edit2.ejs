@@ -1,0 +1,54 @@
+<% layout("/layouts/boilerplate") %>
+
+
+
+<h1>Edit Event</h1>
+<form action="/events2/<%= listing._id %>?_method=PUT" method="POST" novalidate class=" needs-validation">
+
+  <label class="form-label">Event Title</label>
+  <input type="text" name="title" value="<%= listing.title %>"  class="form-control"required />
+  <br>
+
+  <label  class="form-label">Description</label>
+  <textarea name="description" class="form-control" required><%= listing.description %> </textarea>
+  <br>
+
+  <label  class="form-label">Date</label>
+  <input type="date" name="date" value="<%= listing.date.toISOString().split('T')[0] %>" class="form-control"required />
+  <br>
+
+  <label  class="form-label">Time</label>
+  <input type="text" name="time" value="<%= listing.time %>" class="form-control" required />
+  <br>
+
+  <label  class="form-label">Location</label>
+  <input type="text" name="location" value="<%= listing.location %>" class="form-control" required />
+  <br>
+
+  <label  class="form-label">Ticket Price</label>
+  <input type="number" name="price" value="<%= listing.price %>" class="form-control" required />
+  <br>
+
+  <label  class="form-label">Category</label>
+  <select name="category"  class="form-control"required>
+    <% ["Music","Business","Comedy","Technology","Food","Wellness","Film","Sports","Art","Festival"].forEach(cat => { %>
+      <option value="<%= cat %>" <%= listing.category === cat ? "selected" : "" %>><%= cat %></option>
+    <% }) %>
+  </select>
+  <br>
+
+  <label  class="form-label">Available Tickets</label>
+  <input type="number" name="availableTickets" value="<%= listing.availableTickets %>" class="form-control" required />
+  <br>
+
+  <label  class="form-label">Event Banner URL</label>
+  <input type="text" name="imageUrl" value="<%= listing.imageUrl %>" class="form-control" required />
+  <br>
+
+  <label  class="form-label">Organizer ID</label>
+  <input type="text" name="ownerId" value="<%= listing.ownerId %>" class="form-control" required />
+  <br>
+
+  <button type="submit" class="btn">Update Event</button>
+  <br>
+</form>

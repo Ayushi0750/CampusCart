@@ -1,0 +1,120 @@
+
+.btn {
+  background-color:#db7093 !important;
+  color:black !important;
+  padding: 10px 20px;
+   
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: white;
+}
+
+.navbar {
+  height: 6rem;
+  background-color: #db7093!important;
+}
+
+.nav-link {
+  color: black !important;       
+  font-weight: bold;             
+  padding: 8px 12px;             
+  border-radius: 4px;           
+}
+
+
+.fa-bag-shopping {
+  color: #696969 ;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color:#fff0f5  !important ;
+}
+
+.container {
+  flex: 1;
+}
+
+/* footer */
+.f-info-links a {
+  text-decoration: none;
+  color: #222222;
+}
+
+.f-info-links a:hover {
+  text-decoration: underline;
+}
+
+.f-info-links,
+.f-info-socials,
+.f-info-brand {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.f-info-socials i {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.f-info {
+  text-align: center;
+  height: 8rem;
+  display: flex;
+  background-color: #ebebeb;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+
+/* cards */
+.card {
+  border: 2px solid #db7093 !important;
+  margin-bottom: 2rem ;
+  box-shadow: 0 10px 20px #db7093  !important; 
+  transition: box-shadow 0.3s ease-in-out !important;   
+}
+
+
+
+.card-img-top {
+  border-radius: 1rem;
+  width: 100% !important;
+  object-fit: cover !important;
+}
+
+.card-body {
+  padding: 0 !important;
+}
+
+.card-text p {
+  font-weight: 400 !important;
+}
+
+/* card-effects */
+.card-img-overlay {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.card-img-overlay:hover {
+  opacity: 0.2;
+  background-color: white;
+}
+
+/* show page */
+.show-img {
+  height: 30vh;
+}

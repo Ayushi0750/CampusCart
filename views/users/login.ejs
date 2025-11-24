@@ -1,0 +1,51 @@
+<% layout("/layouts/boilerplate") %>
+
+<% if (error && error.length > 0) { %>
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <%= error %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<% if (success && success.length > 0) { %>
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <%= success %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>
+
+<div class="row mt-3">
+  <h1 class="col-6 offset-3">Login to CampusCart</h1>
+  <div class="col-6 offset-3">
+    <form action="/listings/login" method="POST" novalidate class="needs-validation">
+      <!-- Email -->
+      <div class="form-label">
+        <label for="email">Email Address</label> 
+        <input type="email" id="email" name="email" class="form-control" required /> 
+        <div class="error text-danger" id="emailError"></div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-label">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" minlength="6" class="form-control" required /> 
+        <div class="error text-danger" id="passwordError"></div>
+      </div>
+
+      <!-- User Type -->
+      <div class="form-label">
+        <label for="userType">Account Type</label>
+        <select id="userType" name="userType" class="form-select" required>
+          <option value="" disabled selected>Select account type</option>
+          <option value="campus">Campus User</option>
+          <option value="event">Event User</option>
+        </select>
+        <div class="error text-danger" id="userTypeError"></div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn">Login</button>
+    </form>
+  </div>
+</div>
+

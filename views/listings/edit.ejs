@@ -1,0 +1,95 @@
+
+<% layout("/layouts/boilerplate") %>
+
+<body>
+  <div class="row">
+    <div class="col-8 offset-2">
+
+  <h1>Edit Details Of: <%= listing.title %></h1>
+
+  <form action="/listings/<%= listing._id %>?_method=PUT" method="POST" novalidate class="needs-validation">
+
+    <div class="mb-3">
+    <label for="title" class="form-label">Title:</label>
+    <input type="text" name="title" value="<%= listing.title %>" class="form-control" required >
+    <div class="valid-feedback"> Title looks good!!</div><br>
+    </div>
+
+    <div class="mb-3">
+<label for="description"  class="form-label">Description:</label>
+    <textarea name="description"  class="form-control" required><%= listing.description %></textarea>
+     <div class="valid-feedback">Description is  nice!!</div><br>
+    </div>
+
+    <div class="mb-3">
+ <label for="image"  class="form-label">Image URL:</label>
+    <input type="text" name="image[url]" value="<%= listing.image.url %>"  class="form-control"><br>
+    </div>
+
+   
+<div class="mb-3">
+ <label for="price"  class="form-label">Price (₹):</label>
+    <input type="number" name="price" value="<%= listing.price %>"   class="form-control" required>
+     <div class="invalid-feedback"> Please write a valid Price</div><br>
+</div>
+   
+<div class="row">
+<div class="mb-3 col-4">
+
+    <label for="location"  class="form-label">Location:</label>
+    <input type="text" name="location" value="<%= listing.location %>"  class="form-control" required>
+     <div class="invalid-feedback">Please write a valid Location</div><br>
+    </div>
+
+
+    <div class="mb-3 col-8">
+<label for="country"  class="form-label">Country:</label>
+    <input type="text" name="country" value="<%= listing.country %>"  class="form-control" required>
+     <div class="invalid-feedback">Please write a valid Country</div><br>
+
+    </div>
+    </div>
+
+    <div class="mb-3">
+    <h3>Seller Info</h3>
+
+    <label for="seller[name]"  class="form-label">Name:</label>
+    <input type="text" name="seller[name]" value="<%= listing.seller.name %>"  class="form-control" required>
+     <div class="invalid-feedback">Please write a valid Name</div><br>
+
+    <label for="seller[college]"  class="form-label">College:</label>
+    <input type="text" name="seller[college]" value="<%= listing.seller.college %>" class="form-control" required>
+     <div class="invalid-feedback">Please write a valid College</div><br>
+
+    <label for="seller[category]"  class="form-label">Category:</label>
+    <select name="seller[category]"  class="form-control">
+      <option value="hostler" <%= listing.seller.category === 'hostler' ? 'selected' : '' %>>Hostler</option>
+      <option value="day scholar" <%= listing.seller.category === 'day scholar' ? 'selected' : '' %>>Day Scholar</option>
+      <option value="faculty" <%= listing.seller.category === 'faculty' ? 'selected' : '' %>>Faculty</option>
+    </select><br>
+
+    <label for="seller[contact][phone]"  class="form-label">Phone:</label>
+    <input type="text" name="seller[contact][phone]" value="<%= listing.seller.contact.phone %>"  class="form-control"><br>
+
+    <label for="seller[contact][email]"  class="form-label">Email:</label>
+    <input type="email" name="seller[contact][email]" value="<%= listing.seller.contact.email %>"  class="form-control"><br>
+  </div>
+ 
+
+<div class="mb-3 form-check">
+  <input type="checkbox" name="isBarterAvailable" id="isBarterAvailable" class="form-check-input" <%= listing.isBarterAvailable ? "checked" : "" %>>
+  <label for="isBarterAvailable" class="form-check-label">Available for Barter?</label>
+</div>
+</div>
+</div>
+  
+<div class="row offset-2">
+  <div class="col auto">
+    <button type="submit" class="btn">Update Listing</button>
+    </div>
+    </div>
+  </form>
+</body>
+
+
+

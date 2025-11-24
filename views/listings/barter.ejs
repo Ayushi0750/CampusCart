@@ -1,0 +1,27 @@
+
+<div class="card mb-4 shadow-sm">
+  
+  <div class="card-header bg-primary text-white">
+    <h2 class="h5 mb-0"><%= listing.title %></h2>
+  </div>
+
+  
+  <div class="card-body">
+    
+    <p class="form-label">
+      <strong>Barter Conditions:</strong> 
+      <%= listing.barterConditions ? listing.barterConditions : "No conditions specified." %>
+    </p>
+
+    
+    <form action="/listings/<%= listing._id %>/barter-request" method="POST">
+      <div class="mb-3">
+        <label for="offer" class="form-label">Your Offer</label>
+        <textarea class="form-control" id="offer" name="offer" rows="3" required></textarea>
+      </div>
+      <button type="submit" class="btn ">Send Request</button>
+    </form>
+  </div>
+
+  
+</div>

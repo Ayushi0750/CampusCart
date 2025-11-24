@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg bg-body-light  border-bottom">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"> <i class="fa-solid fa-bag-shopping"></i>    Campus Cart: A student marketplace</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav mx-auto text-center">
+        <% if(!currUser){%>
+        <a class="nav-link" href="/listings/signup"> Sign Up</a>
+         <a class="nav-link" href="/listings/login">Log In</a>
+        
+        <% }%>
+        <% if(currUser){ %>
+         <a class="nav-link" href="/listings/logout">Log Out</a>
+       <% }%>
+        
+         
+        <a class="nav-link " href="/listings">MarketPlace</a>
+        <a class="nav-link" href="/listings/barter">Barter Exchange</a>
+        <a class="nav-link" href="/events2/">Event Tickets</a>
+        <a class="nav-link" href="/listings/new">Add Products</a>
+        <a class="nav-link" href="/events2/new"> Add Events</a>
+
+       
+        
+
+
+        
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+
+
