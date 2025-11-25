@@ -35,7 +35,7 @@ const userRoutes = require("./routes/user");
 const flash = require("connect-flash");
 
 const MONGO_URL = process.env.MONGO_URL;
-const dbUrl=process.env.ATLASDB_URL;
+
 
 
 
@@ -48,7 +48,7 @@ main()
   });
 
 async function main() {
-  await mongoose.connect(dbUrl);
+  await mongoose.connect(MONGO_URL);
 }
 
 const sessionOptions = {
