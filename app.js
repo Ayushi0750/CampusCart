@@ -296,6 +296,10 @@ app.delete(
   })
 );
 
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 // 404 handler
 app.use((req, res, next) => {
   next(new ExpressError(404, "Page not found!"));
