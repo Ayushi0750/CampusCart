@@ -86,4 +86,8 @@ router.post("/logout", (req, res, next) => {
   });
 });
 
+router.get("/test", (req, res) => {
+  res.send("User router is working!");
+});
+
 module.exports = router;
