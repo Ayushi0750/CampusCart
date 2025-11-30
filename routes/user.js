@@ -20,7 +20,7 @@ const User2 = createUser2(eventConnection);
 
 // GET signup
 router.get("/signup", (req, res) => {
-  res.render("users/signup.ejs");
+  res.render("users/signup");
 });
 
 // POST signup
@@ -46,7 +46,7 @@ router.post("/signup", async (req, res, next) => {
 
 // GET login
 router.get("/login", (req, res) => {
-  res.render("users/login.ejs");
+  res.render("users/login");
 });
 
 // POST login
