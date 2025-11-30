@@ -117,7 +117,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 
 
-app.use("/listings", userRouter);
+app.use("/", userRouter);
 app.use("/listings", listingRouter);
 
 app.use((req, res, next) => {
