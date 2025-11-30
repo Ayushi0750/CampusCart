@@ -20,7 +20,7 @@ const User2 = createUser2(eventConnection);
 
 // GET signup
 router.get("/signup", (req, res) => {
-  res.render("users/signup.ejs");
+  res.render("users/signup");
 });
 
 // POST signup
@@ -40,13 +40,13 @@ router.post("/signup", async (req, res, next) => {
   } catch (err) {
     console.error("Signup error:", err);
     req.flash("error", err.message);
-    res.redirect("/listings/signup"); 
+    res.redirect("/signup"); 
   }
 });
 
 // GET login
 router.get("/login", (req, res) => {
-  res.render("users/login.ejs");
+  res.render("users/login");
 });
 
 // POST login
@@ -57,7 +57,7 @@ router.post("/login", (req, res, next) => {
   passport.authenticate(strategy, (err, user, info) => {
     if (err || !user) {
       req.flash("error", info?.message || "Login failed");
-      return res.redirect("/listings/login"); 
+      return res.redirect("/login"); 
     }
 
     req.logIn(user, (err) => {
@@ -73,7 +73,7 @@ router.get("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
     req.flash("success", "You have been logged out.");
-    res.redirect("/listings/login"); 
+    res.redirect("/login"); 
   });
 });
 
@@ -82,7 +82,7 @@ router.post("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err);
     req.flash("success", "You have been logged out.");
-    res.redirect("/listings/login"); 
+    res.redirect("/login"); 
   });
 });
 
