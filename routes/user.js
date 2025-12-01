@@ -23,24 +23,26 @@ router.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
 });
 
+
+
 // POST signup
 router.post("/signup", async (req, res, next) => {
-  const { username, email, password, userType } = req.body; 
+  const { username, email, password, userType } = req.body;
   const Model = userType === "event" ? User2 : User;
 
   try {
-    const newUser = new Model({ username, email });
+    const newUser = new Model({ username, email, userType }); // include userType
     const registeredUser = await Model.register(newUser, password);
 
     req.login(registeredUser, (err) => {
       if (err) return next(err);
-      req.flash("success", "Welcome to Wanderlust!");
+      req.flash("success", "Welcome to CampusCart!");
       res.redirect(userType === "event" ? "/events2" : "/listings");
     });
   } catch (err) {
     console.error("Signup error:", err);
     req.flash("error", err.message);
-    res.redirect("/listings/signup"); 
+    res.redirect("/listings/signup");
   }
 });
 
