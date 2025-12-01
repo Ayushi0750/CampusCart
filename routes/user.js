@@ -25,25 +25,25 @@ router.get("/signup", (req, res) => {
 
 
 
-// POST signup
-router.post("/signup", async (req, res, next) => {
-  const { username, email, password, userType } = req.body;
-  const Model = userType === "event" ? User2 : User;
 
-  try {
-    const newUser = new Model({ username, email, userType }); // include userType
-    const registeredUser = await Model.register(newUser, password);
 
-    req.login(registeredUser, (err) => {
+// POST login
+router.post("/login", (req, res, next) => {
+  const { userType } = req.body;
+  const strategy = userType === "event" ? "event-local" : "campus-local";
+
+  passport.authenticate(strategy, (err, user, info) => {
+    if (err || !user) {
+      req.flash("error", info?.message || "Login failed");
+      return res.redirect("/listings/login"); 
+    }
+
+    req.logIn(user, (err) => {
       if (err) return next(err);
-      req.flash("success", "Welcome to CampusCart!");
-      res.redirect(userType === "event" ? "/events2" : "/listings");
+      req.flash("success", "Welcome back!");
+      res.redirect(userType === "event" ? "/events2" : "/listings"); 
     });
-  } catch (err) {
-    console.error("Signup error:", err);
-    req.flash("error", err.message);
-    res.redirect("/listings/signup");
-  }
+  })(req, res, next);
 });
 
 // GET login
